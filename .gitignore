@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.pnpm-store/
+coverage/
+.env
+.env.local
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+backend/data/
+backend/uploads/
+backend/logs/
+logs/
+frontend/.vite/
+
+chroma/

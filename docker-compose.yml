@@ -1,0 +1,46 @@
+services:
+  chroma:
+    image: chromadb/chroma:latest
+    container_name: rag-document-qa-chroma
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma-data:/chroma/chroma
+    environment:
+      IS_PERSISTENT: "TRUE"
+      ANONYMIZED_TELEMETRY: "FALSE"
+
+  backend:
+    build:
+      context: ./backend
+    container_name: rag-document-qa-backend
+    depends_on:
+      - chroma
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    environment:
+      CHROMA_HOST: chroma
+      CHROMA_PORT: "8000"
+      STORAGE_DIR: /app/data
+      UPLOAD_DIR: /app/uploads
+    volumes:
+      - backend-data:/app/data
+      - backend-uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:4000
+    container_name: rag-document-qa-frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  chroma-data:
+  backend-data:
+  backend-uploads:

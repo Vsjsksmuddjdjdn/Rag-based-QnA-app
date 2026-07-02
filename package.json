@@ -1,0 +1,25 @@
+{
+  "name": "rag-document-qa-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack RAG document Q&A app with React, Express, LangChain.js, OpenAI, and Chroma.",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm --filter backend test",
+    "lint": "pnpm -r lint"
+  },
+  "keywords": [
+    "rag",
+    "langchain",
+    "chroma",
+    "openai",
+    "react",
+    "express",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.4"
+}
